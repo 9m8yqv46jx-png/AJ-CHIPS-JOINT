@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJ ICONIC CHIPS JOINT | Since 2023</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ff6600;
+            --primary-dark: #e55a00;
+            --secondary: #ffcc00;
+            --dark: #333333;
+            --light: #f8f8f8;
+            --gray: #777777;
+            --white: #ffffff;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            color: var(--primary);
+            font-size: 2.5rem;
+        }
+
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+
+        .logo-text span {
+            color: var(--secondary);
+        }
+
+        .since-badge {
+            background-color: var(--secondary);
+            color: var(--dark);
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-weight: 600;
+            margin-left: 5px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1573080496219-bb080dd4f877?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            text-align: center;
+            padding: 100px 0;
+            margin-bottom: 60px;
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            border: 2px solid var(--primary);
+        }
+
+        .cta-button:hover {
+            background-color: transparent;
+            color: var(--primary);
+        }
+
+        /* Products Section */
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .product-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-img {
+            height: 200px;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--primary);
+            font-size: 5rem;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .product-info p {
+            color: var(--gray);
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+
+        .price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .add-to-cart {
+            display: block;
+            width: 100%;
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .add-to-cart:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Cart Section */
+        .cart-section {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 80px;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        .cart-header h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+
+        .cart-items {
+            margin-bottom: 30px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-name {
+            font-weight: 600;
+        }
+
+        .item-price {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .cart-total {
+            text-align: right;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 30px;
+        }
+
+        .payment-info {
+            background-color: #fff8e1;
+            border-left: 4px solid var(--secondary);
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 5px;
+        }
+
+        .payment-info h4 {
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .payment-info p {
+            margin-bottom: 5px;
+        }
+
+        .mpesa-details {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #f0f9f0;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+
+        .mpesa-logo {
+            color: #00a859;
+            font-size: 2rem;
+        }
+
+        .order-btn {
+            display: block;
+            width: 100%;
+            background-color: var(--secondary);
+            color: var(--dark);
+            border: none;
+            padding: 18px;
+            border-radius: 5px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+
+        .order-btn:hover {
+            background-color: #ffd700;
+        }
+
+        /* Contact & Info */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .info-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .info-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .info-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .footer-logo span {
+            color: var(--secondary);
+        }
+
+        .footer-about p {
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+
+        .footer-links h4, .footer-contact h4 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul li a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links ul li a:hover {
+            opacity: 1;
+            color: var(--primary);
+        }
+
+        .footer-contact p {
+            margin-bottom: 10px;
+            opacity: 0.8;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px 0;
+            }
+
+            .logo {
+                margin-bottom: 15px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+                display: none;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+                padding: 0 15px;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-french-fries"></i>
+                </div>
+                <div>
+                    <div class="logo-text">AJ ICONIC <span>CHIPS</span></div>
+                    <div class="since-badge">Since 2023</div>
+                </div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#products">Our Chips</a></li>
+                    <li><a href="#cart">Order Now</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>CRISPY, DELICIOUS CHIPS</h1>
+            <p>AJ ICONIC CHIPS JOINT has been serving the crispiest, tastiest chips in Eldoret since 2023. Made fresh daily with the finest potatoes and our secret seasoning blend.</p>
+            <a href="#products" class="cta-button">ORDER NOW</a>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Delicious Chips</h2>
+                <p>Choose from our variety of perfectly fried chips at affordable prices</p>
+            </div>
+            
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Regular Pack</h3>
+                        <p>Perfectly golden fries, lightly salted to perfection. Great for a quick snack.</p>
+                        <div class="price">Ksh 70</div>
+                        <button class="add-to-cart" data-name="Regular Pack" data-price="70">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Spicy Pack</h3>
+                        <p>Our signature chips with a spicy kick. For those who love a bit of heat.</p>
+                        <div class="price">Ksh 100</div>
+                        <button class="add-to-cart" data-name="Spicy Pack" data-price="100">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <i class="fas fa-cheese"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Cheese Lovers</h3>
+                        <p>Loaded with melted cheese and our special sauce. A crowd favorite.</p>
+                        <div class="price">Ksh 150</div>
+                        <button class="add-to-cart" data-name="Cheese Lovers" data-price="150">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-img">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Family Feast</h3>
+                        <p>Large portion perfect for sharing with family or friends. Our best value!</p>
+                        <div class="price">Ksh 200</div>
+                        <button class="add-to-cart" data-name="Family Feast" data-price="200">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart & Order Section -->
+    <section id="cart">
+        <div class="container">
+            <div class="section-title">
+                <h2>Place Your Order</h2>
+                <p>Add chips to your cart and complete your order via M-PESA</p>
+            </div>
+            
+            <div class="cart-section">
+                <div class="cart-header">
+                    <h3>Your Order</h3>
+                    <button id="clearCart" style="background: none; border: none; color: var(--primary); cursor: pointer; font-weight: 600;">
+                        <i class="fas fa-trash"></i> Clear Cart
+                    </button>
+                </div>
+                
+                <div class="cart-items" id="cartItems">
+                    <!-- Cart items will be added here dynamically -->
+                    <p id="emptyCartMessage">Your cart is empty. Add some delicious chips!</p>
+                </div>
+                
+                <div class="cart-total">
+                    Total: Ksh <span id="cartTotal">0</span>
+                </div>
+                
+                <div class="payment-info">
+                    <h4>Payment Instructions</h4>
+                    <p>1. Add your desired chips to the cart</p>
+                    <p>2. Review your order total above</p>
+                    <p>3. Send payment via M-PESA to:</p>
+                    
+                    <div class="mpesa-details">
+                        <div class="mpesa-logo">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div>
+                            <p><strong>Paybill Number:</strong> 0715209233</p>
+                            <p><strong>Account Name:</strong> Alex Kipchumba</p>
+                            <p><strong>Amount:</strong> <span id="mpesaAmount">0</span> Ksh</p>
+                        </div>
+                    </div>
+                    
+                    <p style="margin-top: 15px;">4. After payment, call or WhatsApp us at <strong>0715209233</strong> with your order details and payment confirmation.</p>
+                    <p>5. We'll prepare your order for pickup or delivery!</p>
+                </div>
+                
+                <button class="order-btn" id="orderBtn">
+                    <i class="fas fa-shopping-cart"></i> PLACE ORDER VIA M-PESA
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Info Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Visit or Contact Us</h2>
+                <p>We're here to serve you the best chips in Eldoret</p>
+            </div>
+            
+            <div class="contact-info">
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Our Location</h3>
+                    <p>Outspan Centre, Eldoret</p>
+                    <p>We're located in the heart of Eldoret, easily accessible from all directions.</p>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Opening Hours</h3>
+                    <p><strong>Monday - Sunday:</strong></p>
+                    <p>10:00 AM - 8:00 PM</p>
+                    <p>We're open 7 days a week to satisfy your chip cravings!</p>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3>Contact & Ordering</h3>
+                    <p><strong>Phone/WhatsApp:</strong> 0715209233</p>
+                    <p>Call us to place your order or for inquiries.</p>
+                    <p>Online ordering available via phone call or WhatsApp.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">AJ ICONIC <span>CHIPS</span></div>
+                    <p>Serving Eldoret with the crispiest, most delicious chips since 2023. Our commitment to quality and taste has made us a local favorite.</p>
+                    <div class="since-badge">Since 2023</div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Our Chips</a></li>
+                        <li><a href="#cart">Order Now</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Outspan Centre, Eldoret</p>
+                    <p><i class="fas fa-phone"></i> 0715209233</p>
+                    <p><i class="fas fa-clock"></i> Mon-Sun: 10:00 AM - 8:00 PM</p>
+                    <p><i class="fas fa-shopping-cart"></i> Order online via 0715209233</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 - <span id="currentYear"></span> AJ ICONIC CHIPS JOINT. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Shopping cart functionality
+        let cart = [];
+        const cartItemsContainer = document.getElementById('cartItems');
+        const cartTotalElement = document.getElementById('cartTotal');
+        const mpesaAmountElement = document.getElementById('mpesaAmount');
+        const emptyCartMessage = document.getElementById('emptyCartMessage');
+        const clearCartBtn = document.getElementById('clearCart');
+        const orderBtn = document.getElementById('orderBtn');
+        
+        // Add to cart buttons
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', () => {
+                const name = button.getAttribute('data-name');
+                const price = parseInt(button.getAttribute('data-price'));
+                
+                addToCart(name, price);
+                updateCartDisplay();
+            });
+        });
+        
+        // Add item to cart
+        function addToCart(name, price) {
+            // Check if item already exists in cart
+            const existingItemIndex = cart.findIndex(item => item.name === name);
+            
+            if (existingItemIndex !== -1) {
+                // Item exists, increase quantity
+                cart[existingItemIndex].quantity += 1;
+            } else {
+                // Add new item
+                cart.push({
+                    name: name,
+                    price: price,
+                    quantity: 1
+                });
+            }
+            
+            // Show confirmation
+            showNotification(`${name} added to cart!`);
+        }
+        
+        // Update cart display
+        function updateCartDisplay() {
+            // Clear current display
+            cartItemsContainer.innerHTML = '';
+            
+            if (cart.length === 0) {
+                emptyCartMessage.style.display = 'block';
+                return;
+            }
+            
+            emptyCartMessage.style.display = 'none';
+            
+            // Calculate total
+            let total = 0;
+            
+            // Render each cart item
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                
+                const cartItemElement = document.createElement('div');
+                cartItemElement.className = 'cart-item';
+                cartItemElement.innerHTML = `
+                    <div class="item-name">${item.name} x${item.quantity}</div>
+                    <div class="item-price">Ksh ${itemTotal}</div>
+                    <div>
+                        <button class="remove-item" data-index="${index}" style="background: none; border: none; color: #ff4444; cursor: pointer; font-size: 1rem;">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                `;
+                
+                cartItemsContainer.appendChild(cartItemElement);
+            });
+            
+            // Update total
+            cartTotalElement.textContent = total;
+            mpesaAmountElement.textContent = total;
+            
+            // Add event listeners to remove buttons
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', () => {
+                    const index = parseInt(button.getAttribute('data-index'));
+                    removeFromCart(index);
+                });
+            });
+        }
+        
+        // Remove item from cart
+        function removeFromCart(index) {
+            if (index >= 0 && index < cart.length) {
+                const removedItem = cart[index].name;
+                cart.splice(index, 1);
+                updateCartDisplay();
+                showNotification(`${removedItem} removed from cart`);
+            }
+        }
+        
+        // Clear cart
+        clearCartBtn.addEventListener('click', () => {
+            if (cart.length > 0) {
+                cart = [];
+                updateCartDisplay();
+                showNotification('Cart cleared!');
+            }
+        });
+        
+        // Order button functionality
+        orderBtn.addEventListener('click', () => {
+            if (cart.length === 0) {
+                showNotification('Please add items to your cart before ordering!', 'error');
+                return;
+            }
+            
+            // Create order summary
+            let orderSummary = "AJ ICONIC CHIPS ORDER:\n";
+            cart.forEach(item => {
+                orderSummary += `${item.name} x${item.quantity} = Ksh ${item.price * item.quantity}\n`;
+            });
+            orderSummary += `\nTOTAL: Ksh ${cartTotalElement.textContent}\n`;
+            orderSummary += `\nPayment to: 0715209233 (Alex Kipchumba)\n`;
+            orderSummary += `Location: Outspan Centre, Eldoret\n`;
+            orderSummary += `Customer: [Your Name]`;
+            
+            // Show order confirmation
+            const phoneNumber = "0715209233";
+            const message = encodeURIComponent(orderSummary);
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${message}`;
+            
+            // Create confirmation modal
+            const modal = document.createElement('div');
+            modal.style.position = 'fixed';
+            modal.style.top = '0';
+            modal.style.left = '0';
+            modal.style.width = '100%';
+            modal.style.height = '100%';
+            modal.style.backgroundColor = 'rgba(0,0,0,0.8)';
+            modal.style.display = 'flex';
+            modal.style.justifyContent = 'center';
+            modal.style.alignItems = 'center';
+            modal.style.zIndex = '1000';
+            
+            modal.innerHTML = `
+                <div style="background: white; padding: 30px; border-radius: 10px; max-width: 500px; width: 90%;">
+                    <h2 style="color: var(--primary); margin-bottom: 20px;">Confirm Your Order</h2>
+                    <p>Your order total is <strong>Ksh ${cartTotalElement.textContent}</strong>.</p>
+                    <p>Please send payment via M-PESA to <strong>0715209233</strong> (Alex Kipchumba).</p>
+                    <p>After payment, you can contact us via:</p>
+                    <div style="display: flex; gap: 10px; margin: 20px 0;">
+                        <a href="tel:0715209233" style="flex: 1; background: var(--primary); color: white; text-decoration: none; padding: 12px; text-align: center; border-radius: 5px;">
+                            <i class="fas fa-phone"></i> Call Us
+                        </a>
+                        <a href="${whatsappURL}" target="_blank" style="flex: 1; background: #25D366; color: white; text-decoration: none; padding: 12px; text-align: center; border-radius: 5px;">
+                            <i class="fab fa-whatsapp"></i> WhatsApp
+                        </a>
+                    </div>
+                    <button id="closeModal" style="background: var(--dark); color: white; border: none; padding: 12px 25px; border-radius: 5px; cursor: pointer; width: 100%;">Close</button>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Close modal
+            document.getElementById('closeModal').addEventListener('click', () => {
+                document.body.removeChild(modal);
+            });
+        });
+        
+        // Show notification
+        function showNotification(message, type = 'success') {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.textContent = message;
+            notification.style.position = 'fixed';
+            notification.style.top = '20px';
+            notification.style.right = '20px';
+            notification.style.padding = '15px 20px';
+            notification.style.borderRadius = '5px';
+            notification.style.color = 'white';
+            notification.style.fontWeight = '600';
+            notification.style.zIndex = '1001';
+            notification.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
+            
+            if (type === 'error') {
+                notification.style.backgroundColor = '#ff4444';
+            } else {
+                notification.style.backgroundColor = '#00a859';
+            }
+            
+            document.body.appendChild(notification);
+            
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                document.body.removeChild(notification);
+            }, 3000);
+        }
+        
+        // Initialize cart display
+        updateCartDisplay();
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    navMenu.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
