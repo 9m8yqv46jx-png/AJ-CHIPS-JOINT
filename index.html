@@ -1,0 +1,304 @@
+import datetime
+import time
+import sys
+
+class AJIconicChipsJoint:
+    def __init__(self):
+        self.name = "AJ ICONIC CHIPS JOINT"
+        self.established = "2023"
+        self.location = "Outspan Centre, Eldoret"
+        self.phone = "0715209233"
+        self.mpesa_number = "0715209233"
+        self.account_name = "Alex Kipchumba"
+        
+        self.opening_hours = {
+            "Monday": "10:00am - 8:00pm",
+            "Tuesday": "10:00am - 8:00pm",
+            "Wednesday": "10:00am - 8:00pm",
+            "Thursday": "10:00am - 8:00pm",
+            "Friday": "10:00am - 8:00pm",
+            "Saturday": "10:00am - 8:00pm",
+            "Sunday": "10:00am - 8:00pm"
+        }
+        
+        self.menu = {
+            "1": {"name": "Regular Chips", "price": 70},
+            "2": {"name": "Medium Chips", "price": 100},
+            "3": {"name": "Large Chips", "price": 150},
+            "4": {"name": "Family Pack", "price": 200}
+        }
+        
+        self.cart = []
+        self.total_amount = 0
+        
+    def display_header(self):
+        """Display the app header"""
+        print("\n" + "="*60)
+        print(f"         {self.name}")
+        print(f"           EST. {self.established}")
+        print("="*60)
+        
+    def display_menu(self):
+        """Display the menu items"""
+        print("\n" + "-"*60)
+        print("            OUR DELICIOUS CHIPS MENU")
+        print("-"*60)
+        print("No. | Item               | Price (KSH)")
+        print("-"*60)
+        
+        for key, item in self.menu.items():
+            print(f"{key:3} | {item['name']:18} | KSH {item['price']:3}")
+        
+        print("-"*60)
+        
+    def display_contact_info(self):
+        """Display contact information"""
+        print("\n" + "-"*60)
+        print("            CONTACT & LOCATION")
+        print("-"*60)
+        print(f"📍 Location: {self.location}")
+        print(f"📞 Phone: {self.phone}")
+        print(f"💳 M-PESA: {self.mpesa_number}")
+        print(f"📱 Account Name: {self.account_name}")
+        print("-"*60)
+        
+    def display_opening_hours(self):
+        """Display opening hours"""
+        print("\n" + "-"*60)
+        print("            OPENING HOURS")
+        print("-"*60)
+        for day, hours in self.opening_hours.items():
+            print(f"{day:10}: {hours}")
+        print("-"*60)
+        
+    def add_to_cart(self):
+        """Add items to cart"""
+        while True:
+            self.display_menu()
+            print("\nSelect item number to add to cart (0 to finish):")
+            choice = input("Choice: ").strip()
+            
+            if choice == "0":
+                break
+                
+            if choice in self.menu:
+                try:
+                    quantity = int(input(f"How many {self.menu[choice]['name']}? "))
+                    if quantity > 0:
+                        item = self.menu[choice]
+                        item_total = item['price'] * quantity
+                        self.cart.append({
+                            'name': item['name'],
+                            'price': item['price'],
+                            'quantity': quantity,
+                            'total': item_total
+                        })
+                        self.total_amount += item_total
+                        print(f"✓ Added {quantity} x {item['name']} - KSH {item_total}")
+                    else:
+                        print("❌ Quantity must be greater than 0")
+                except ValueError:
+                    print("❌ Please enter a valid number")
+            else:
+                print("❌ Invalid selection")
+                
+    def view_cart(self):
+        """Display current cart contents"""
+        if not self.cart:
+            print("\n🛒 Your cart is empty")
+            return
+            
+        print("\n" + "-"*60)
+        print("            YOUR ORDER CART")
+        print("-"*60)
+        print("Item               | Qty | Price | Total")
+        print("-"*60)
+        
+        for item in self.cart:
+            print(f"{item['name']:18} | {item['quantity']:3} | {item['price']:5} | {item['total']:6}")
+        
+        print("-"*60)
+        print(f"TOTAL AMOUNT: KSH {self.total_amount}")
+        print("-"*60)
+        
+    def checkout(self):
+        """Process checkout and payment"""
+        if not self.cart:
+            print("\n❌ Your cart is empty. Add items first.")
+            return
+            
+        self.view_cart()
+        
+        print("\n" + "="*60)
+        print("            CHECKOUT PROCESS")
+        print("="*60)
+        
+        print(f"\n📱 Please make payment via M-PESA to:")
+        print(f"   Phone Number: {self.mpesa_number}")
+        print(f"   Account Name: {self.account_name}")
+        print(f"   Amount: KSH {self.total_amount}")
+        
+        print("\n📋 Order Summary:")
+        print("-"*40)
+        for item in self.cart:
+            print(f"  • {item['quantity']} x {item['name']}")
+        print(f"  Total: KSH {self.total_amount}")
+        print(f"  Location: {self.location}")
+        print(f"  Phone: {self.phone}")
+        print("-"*40)
+        
+        print("\n📝 After payment, please:")
+        print("   1. Save the MPESA confirmation message")
+        print(f"   2. Call/SMS {self.phone} with your order details")
+        print("   3. Wait for order confirmation")
+        
+        confirm = input("\nType 'CONFIRM' to complete order (or 'CANCEL' to cancel): ").upper()
+        
+        if confirm == "CONFIRM":
+            print("\n✅ Order placed successfully!")
+            print("⏳ We'll process your order once payment is confirmed.")
+            print(f"📞 We may contact you on the number used for payment.")
+            
+            # Generate order reference
+            order_ref = f"AJ{int(time.time()) % 10000:04d}"
+            print(f"🔢 Your Order Reference: {order_ref}")
+            
+            # Save order to file (optional)
+            self.save_order(order_ref)
+            
+            # Clear cart
+            self.cart = []
+            self.total_amount = 0
+            
+        else:
+            print("\n❌ Order cancelled.")
+            
+    def save_order(self, order_ref):
+        """Save order details to a file"""
+        try:
+            timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            with open("orders.txt", "a") as f:
+                f.write(f"\n{'='*60}\n")
+                f.write(f"Order Reference: {order_ref}\n")
+                f.write(f"Time: {timestamp}\n")
+                f.write(f"Total Amount: KSH {self.total_amount}\n")
+                f.write("Items:\n")
+                for item in self.cart:
+                    f.write(f"  - {item['quantity']} x {item['name']} @ KSH {item['price']}\n")
+                f.write(f"{'='*60}\n")
+        except Exception as e:
+            print(f"Note: Could not save order details: {e}")
+            
+    def display_main_menu(self):
+        """Display the main menu"""
+        print("\n" + "="*60)
+        print("            MAIN MENU")
+        print("="*60)
+        print("1. 📋 View Menu")
+        print("2. 🛒 Add to Cart")
+        print("3. 👁️ View Cart")
+        print("4. 💳 Checkout")
+        print("5. 📍 Contact & Location")
+        print("6. 🕐 Opening Hours")
+        print("7. ℹ️ About Us")
+        print("8. ❌ Exit")
+        print("="*60)
+        
+    def about_us(self):
+        """Display about information"""
+        print("\n" + "="*60)
+        print("            ABOUT AJ ICONIC CHIPS JOINT")
+        print("="*60)
+        print(f"\n{self.name} has been serving delicious, crispy chips")
+        print(f"since {self.established}. Located in the heart of Eldoret,")
+        print("we pride ourselves on quality, taste, and excellent service.")
+        print("\nOur chips are made fresh daily using the finest potatoes")
+        print("and our special secret recipe that has made us iconic!")
+        print("\n🌟 Why Choose Us?")
+        print("   • Freshly prepared chips")
+        print("   • Affordable prices")
+        print("   • Convenient location")
+        print("   • Reliable delivery")
+        print("   • Excellent customer service")
+        print("="*60)
+        
+    def check_business_hours(self):
+        """Check if business is currently open"""
+        now = datetime.datetime.now()
+        current_hour = now.hour
+        current_minute = now.minute
+        current_time = current_hour * 100 + current_minute
+        
+        # Business hours: 10:00 AM (1000) to 8:00 PM (2000)
+        opening_time = 1000  # 10:00 AM
+        closing_time = 2000  # 8:00 PM
+        
+        if opening_time <= current_time <= closing_time:
+            return True, "✅ We are currently OPEN!"
+        else:
+            return False, "⏳ We are currently CLOSED. Please order during business hours."
+            
+    def run(self):
+        """Main application loop"""
+        print("\n" + "="*60)
+        print("     WELCOME TO AJ ICONIC CHIPS JOINT!")
+        print("="*60)
+        
+        # Check business hours
+        is_open, status_message = self.check_business_hours()
+        print(f"\n{status_message}")
+        
+        if not is_open:
+            print(f"\nNext Opening: Tomorrow at 10:00 AM")
+            self.display_opening_hours()
+            
+        while True:
+            self.display_main_menu()
+            
+            choice = input("\nEnter your choice (1-8): ").strip()
+            
+            if choice == "1":
+                self.display_menu()
+            elif choice == "2":
+                self.add_to_cart()
+            elif choice == "3":
+                self.view_cart()
+            elif choice == "4":
+                if not is_open:
+                    print("\n⚠️  Note: We are currently closed.")
+                    print("You can still place an order for tomorrow!")
+                    proceed = input("Continue with order? (yes/no): ").lower()
+                    if proceed != "yes":
+                        continue
+                self.checkout()
+            elif choice == "5":
+                self.display_contact_info()
+            elif choice == "6":
+                self.display_opening_hours()
+            elif choice == "7":
+                self.about_us()
+            elif choice == "8":
+                print("\n" + "="*60)
+                print("   THANK YOU FOR VISITING AJ ICONIC CHIPS JOINT!")
+                print("          Come back for more delicious chips!")
+                print("="*60)
+                break
+            else:
+                print("\n❌ Invalid choice. Please try again.")
+                
+            input("\nPress Enter to continue...")
+
+
+def main():
+    """Main function to run the application"""
+    app = AJIconicChipsJoint()
+    
+    try:
+        app.run()
+    except KeyboardInterrupt:
+        print("\n\n👋 Application closed. Thank you!")
+        sys.exit(0)
+
+
+if __name__ == "__main__":
+    main()
