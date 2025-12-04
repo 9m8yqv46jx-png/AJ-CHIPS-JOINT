@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJ Iconic Chips Joint</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1><i class="fas fa-french-fries"></i> AJ ICONIC CHIPS JOINT</h1>
+                <span class="established">EST. 2023</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#order">Order</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li class="cart-icon">
+                    <a href="#cart" id="cartBtn">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header/Hero Section -->
+    <header class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h2>The Most Iconic Chips in Eldoret</h2>
+                <p>Freshly prepared daily with our secret recipe that has made us famous!</p>
+                <div class="cta-buttons">
+                    <a href="#menu" class="btn btn-primary">View Menu</a>
+                    <a href="#order" class="btn btn-secondary">Order Now</a>
+                </div>
+                <div class="status-badge" id="statusBadge">
+                    <i class="fas fa-clock"></i>
+                    <span>Checking hours...</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Business Info Banner -->
+    <div class="info-banner">
+        <div class="container">
+            <div class="info-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                    <h4>Location</h4>
+                    <p>Outspan Centre, Eldoret</p>
+                </div>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-phone"></i>
+                <div>
+                    <h4>Call Us</h4>
+                    <p>0715 209 233</p>
+                </div>
+            </div>
+            <div class="info-item">
+                <i class="fas fa-clock"></i>
+                <div>
+                    <h4>Opening Hours</h4>
+                    <p>10:00 AM - 8:00 PM Daily</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu Section -->
+    <section class="menu-section" id="menu">
+        <div class="container">
+            <h2 class="section-title">Our Delicious Menu</h2>
+            <div class="menu-grid" id="menuGrid">
+                <!-- Menu items will be loaded by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Section -->
+    <section class="order-section" id="order">
+        <div class="container">
+            <div class="order-container">
+                <div class="order-form">
+                    <h2 class="section-title">Place Your Order</h2>
+                    <div class="menu-items-select">
+                        <h3>Select Items</h3>
+                        <div class="menu-select" id="menuSelect">
+                            <!-- Menu selection will be loaded here -->
+                        </div>
+                    </div>
+                    
+                    <div class="delivery-options">
+                        <h3>Delivery Options</h3>
+                        <div class="options">
+                            <label class="option-btn">
+                                <input type="radio" name="delivery" value="pickup" checked>
+                                <span><i class="fas fa-store"></i> Pickup (Free)</span>
+                            </label>
+                            <label class="option-btn">
+                                <input type="radio" name="delivery" value="delivery">
+                                <span><i class="fas fa-motorcycle"></i> Delivery (KSH 50)</span>
+                            </label>
+                        </div>
+                        <div class="delivery-address" id="deliveryAddress" style="display: none;">
+                            <label for="address">Delivery Address:</label>
+                            <textarea id="address" rows="3" placeholder="Enter your full delivery address"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="customer-info">
+                        <h3>Your Details</h3>
+                        <div class="form-group">
+                            <input type="text" id="customerName" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="customerPhone" placeholder="Phone Number" required>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary btn-block" onclick="addToCart()">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                </div>
+                
+                <div class="cart-summary">
+                    <h2 class="section-title">Your Order Cart</h2>
+                    <div class="cart-items" id="cartItems">
+                        <p class="empty-cart">Your cart is empty</p>
+                    </div>
+                    <div class="cart-total">
+                        <div class="total-line">
+                            <span>Subtotal:</span>
+                            <span id="subtotal">KSH 0</span>
+                        </div>
+                        <div class="total-line">
+                            <span>Delivery:</span>
+                            <span id="deliveryCharge">KSH 0</span>
+                        </div>
+                        <div class="total-line grand-total">
+                            <span>Total:</span>
+                            <span id="totalAmount">KSH 0</span>
+                        </div>
+                    </div>
+                    <div class="payment-info">
+                        <h4><i class="fas fa-mobile-alt"></i> MPESA Payment</h4>
+                        <p>Send payment to: <strong>0715 209 233</strong></p>
+                        <p>Account Name: <strong>Alex Kipchumba</strong></p>
+                    </div>
+                    <button class="btn btn-success btn-block" onclick="checkout()" id="checkoutBtn" disabled>
+                        <i class="fas fa-check-circle"></i> Checkout & Place Order
+                    </button>
+                    <button class="btn btn-danger btn-block" onclick="clearCart()">
+                        <i class="fas fa-trash"></i> Clear Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <h2 class="section-title">About AJ Iconic Chips Joint</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>AJ Iconic Chips Joint has been serving delicious, crispy chips since 2023. Located in the heart of Eldoret, we pride ourselves on quality, taste, and excellent service.</p>
+                    <p>Our chips are made fresh daily using the finest potatoes and our special secret recipe that has made us iconic!</p>
+                    
+                    <h3><i class="fas fa-star"></i> Why Choose Us?</h3>
+                    <ul class="features">
+                        <li><i class="fas fa-check-circle"></i> Freshly prepared chips daily</li>
+                        <li><i class="fas fa-check-circle"></i> Affordable prices for everyone</li>
+                        <li><i class="fas fa-check-circle"></i> Convenient central location</li>
+                        <li><i class="fas fa-check-circle"></i> Fast and reliable delivery</li>
+                        <li><i class="fas fa-check-circle"></i> Excellent customer service</li>
+                        <li><i class="fas fa-check-circle"></i> Secret family recipe</li>
+                    </ul>
+                </div>
+                <div class="about-image">
+                    <!-- You can add an image here -->
+                    <div class="image-placeholder">
+                        <i class="fas fa-french-fries"></i>
+                        <p>Delicious Chips!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact & Location</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Our Location</h4>
+                            <p>Outspan Centre, Eldoret, Kenya</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Call Us</h4>
+                            <p>0715 209 233</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-mobile-alt"></i>
+                        <div>
+                            <h4>MPESA Number</h4>
+                            <p>0715 209 233</p>
+                            <p class="small">Account Name: Alex Kipchumba</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Business Hours</h4>
+                            <p>Monday - Sunday: 10:00 AM - 8:00 PM</p>
+                            <p class="small">Open 7 days a week!</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Send us a Message</h3>
+                    <form id="messageForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Your Email">
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Phone Number" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea rows="5" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="map-placeholder">
+                <i class="fas fa-map-marked-alt"></i>
+                <h4>Find Us at Outspan Centre, Eldoret</h4>
+                <p>We're located in the central business district for easy access</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3><i class="fas fa-french-fries"></i> AJ ICONIC CHIPS JOINT</h3>
+                    <p>Serving Eldoret with the best chips since 2023</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#order">Order Online</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Outspan Centre, Eldoret</p>
+                    <p><i class="fas fa-phone"></i> 0715 209 233</p>
+                    <p><i class="fas fa-envelope"></i> info@ajiconicchips.co.ke</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 AJ Iconic Chips Joint. All rights reserved.</p>
+                <p>Designed with <i class="fas fa-heart"></i> for chip lovers in Eldoret</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeCartModal()">&times;</span>
+            <h2><i class="fas fa-shopping-cart"></i> Your Cart</h2>
+            <div id="modalCartItems"></div>
+            <div class="modal-total">
+                <h3>Total: <span id="modalTotal">KSH 0</span></h3>
+            </div>
+            <button class="btn btn-success btn-block" onclick="checkout()">
+                <i class="fas fa-check-circle"></i> Proceed to Checkout
+            </button>
+        </div>
+    </div>
+
+    <!-- Order Confirmation Modal -->
+    <div class="modal" id="orderModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeOrderModal()">&times;</span>
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2>Order Placed Successfully!</h2>
+            <div class="order-details">
+                <p><strong>Order Reference:</strong> <span id="orderRef">AJ0000</span></p>
+                <p><strong>Total Amount:</strong> <span id="orderTotal">KSH 0</span></p>
+                <p><strong>Customer Name:</strong> <span id="orderCustomer">-</span></p>
+                <p><strong>Phone:</strong> <span id="orderPhone">-</span></p>
+            </div>
+            <div class="payment-instructions">
+                <h4><i class="fas fa-mobile-alt"></i> Payment Instructions</h4>
+                <p>Please send <strong id="paymentAmount">KSH 0</strong> to:</p>
+                <p>MPESA: <strong>0715 209 233</strong></p>
+                <p>Account: <strong>Alex Kipchumba</strong></p>
+                <p class="note">After payment, call/SMS us with your order reference</p>
+            </div>
+            <button class="btn btn-primary btn-block" onclick="closeOrderModal()">
+                <i class="fas fa-home"></i> Back to Home
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
